@@ -7,8 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ps.Ecomm.ReportService", "P
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ps.Ecomm.Models", "Ps.Ecomm.Models\Ps.Ecomm.Models.csproj", "{805C7E04-5D6C-475E-AC63-6EBDC75A43AA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ps.Ecomm.PlaneRabbitMQ", "Ps.Ecomm.PlaneRabbitMQ\Ps.Ecomm.PlaneRabbitMQ.csproj", "{51E28B7C-D77A-4085-8F64-AAFA91AB51C1}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,10 +21,6 @@ Global
 		{805C7E04-5D6C-475E-AC63-6EBDC75A43AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{805C7E04-5D6C-475E-AC63-6EBDC75A43AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{805C7E04-5D6C-475E-AC63-6EBDC75A43AA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{51E28B7C-D77A-4085-8F64-AAFA91AB51C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{51E28B7C-D77A-4085-8F64-AAFA91AB51C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{51E28B7C-D77A-4085-8F64-AAFA91AB51C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{51E28B7C-D77A-4085-8F64-AAFA91AB51C1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

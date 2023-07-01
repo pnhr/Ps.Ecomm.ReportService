@@ -1,6 +1,6 @@
-﻿using Microsoft.VisualBasic;
+﻿using MassTransit;
+using Microsoft.VisualBasic;
 using Ps.Ecomm.Models;
-using Ps.Ecomm.PlaneRabbitMQ;
 using Ps.Ecomm.ReportService.DataAccess;
 using Ps.Ecomm.ReportService.Listeners;
 using RabbitMQ.Client;
@@ -25,15 +25,23 @@ namespace Ps.Ecomm.ReportService.AppStart
             var dbConnStr = config.GetConnectionString("AppDb");
             var rabbitMqConnStr = config.GetConnectionString("RabbitMqConnStr");
             services.AddSingleton<IReportStorage, MemoryReportStorage>();
-            services.AddSingleton<IConnectionProvider>(new ConnectionProvider(rabbitMqConnStr));
-            services.AddSingleton<ISubscriber>(x => new Subscriber(x.GetService<IConnectionProvider>(),
-                                                                MQConstants.EXCHANGE_REPORT,
-                                                                MQConstants.QUEUE_REPORT_ORDER,
-                                                                MQConstants.ROUTE_KEY_REPORT_ALL,
-                                                                ExchangeType.Topic));
-
-            services.AddHostedService<ReportDataCollector>();
-
+            services.AddMassTransit(config =>
+            {
+                config.AddConsumer<OrderConsumer>();
+                config.AddConsumer<ProductConsumer>();
+                config.UsingRabbitMq((ctx, cfg) =>
+                {
+                    cfg.Host(rabbitMqConnStr);
+                    cfg.ReceiveEndpoint("order-queue", c =>
+                    {
+                        c.ConfigureConsumer<OrderConsumer>(ctx);
+                    });
+                    cfg.ReceiveEndpoint("product-queue", c =>
+                    {
+                        c.ConfigureConsumer<ProductConsumer>(ctx);
+                    });
+                });
+            });
         }
     }
 }

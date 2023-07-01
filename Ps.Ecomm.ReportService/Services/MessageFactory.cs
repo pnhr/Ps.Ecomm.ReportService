@@ -22,5 +22,17 @@ namespace Ps.Ecomm.ReportService.Services
             }
             return null;
         }
+        public IMessageService GetInstance(Type type)
+        {
+            if (typeof(Product) == type)
+            {
+                return new ProductService(reportStorage);
+            }
+            else if (typeof(OrderDetail) == type)
+            {
+                return new OrderService(reportStorage);
+            }
+            return null;
+        }
     }
 }
