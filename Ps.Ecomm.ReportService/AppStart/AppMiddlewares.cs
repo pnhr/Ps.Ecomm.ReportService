@@ -6,7 +6,9 @@
         {
             // Configure the HTTP request pipeline.
             app.UseSwagger();
-            app.UseSwaggerUI(c => {
+            app.UseSwaggerUI(c =>
+            {
+                c.DocumentTitle = "Swagger UI | Report Service";
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Ps Ecomm Report Service");
             });
 
